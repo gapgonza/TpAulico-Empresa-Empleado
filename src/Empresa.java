@@ -33,4 +33,11 @@ public class Empresa {
     
     public void mostrarEmpleado() {
     }
+
+    @Override
+    public String toString() {
+        return "Empresa{" + "razonSocial=" + razonSocial + ", cuit=" + cuit + '}';
+    }
+
+       
 }
