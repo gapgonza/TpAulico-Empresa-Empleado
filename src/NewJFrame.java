@@ -1,4 +1,5 @@
 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /*
@@ -12,6 +13,10 @@ import javax.swing.JOptionPane;
  */
 public class NewJFrame extends javax.swing.JFrame {
 
+    ArrayList<Empresa> ListaEmpresas = new ArrayList<Empresa>();
+    ArrayList<Empleado> ListaEmpleados = new ArrayList<Empleado>();
+    
+    
     /**
      * Creates new form NewJFrame
      */
@@ -76,6 +81,8 @@ public class NewJFrame extends javax.swing.JFrame {
 
         jLabel10.setText("Sueldo");
 
+        jcCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Gerente", "Jefe", "Administrativo" }));
+
         jbGuardarempleado.setText("Guardar");
         jbGuardarempleado.setEnabled(false);
         jbGuardarempleado.addActionListener(new java.awt.event.ActionListener() {
@@ -86,6 +93,11 @@ public class NewJFrame extends javax.swing.JFrame {
 
         jbMostrarEmpleado.setText("MostrarEmpleados");
         jbMostrarEmpleado.setEnabled(false);
+        jbMostrarEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbMostrarEmpleadoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -239,7 +251,14 @@ public class NewJFrame extends javax.swing.JFrame {
 
     private void jbCrearEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCrearEmpresaActionPerformed
         Empresa e=new Empresa(jtRazonSocial.getText(),Integer.parseInt(jtCuit.getText()));
-        jcEmpresas.addItem(e);
+         if(!ListaEmpresas.contains(e)){
+            jcEmpresas.addItem(e);
+            ListaEmpresas.add(e);
+            jbGuardarempleado.setEnabled(true);
+            jbMostrarEmpleado.setEnabled(true);
+         }else{
+             JOptionPane.showMessageDialog(this, "La empresa ya existe");
+         }
         
         /*try {
             String razonSocial = jtRazonSocial.getText();
@@ -259,10 +278,22 @@ public class NewJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jbCrearEmpresaActionPerformed
 
     private void jbGuardarempleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarempleadoActionPerformed
-        int documento = Integer.parseInt(jtDocumento.getText());
-        String Nombre = jtNombre.getText();
-        String Apellido = jtApellido.getText();
+        try{
+            Empleado e = new Empleado(Integer.parseInt(jtDocumento.getText()), jtNombre.getText(),
+                    jcCategoria.getSelectedItem().toString(), Double.parseDouble(jtSueldo.getText()),
+                    (Empresa)jcEmpresas.getSelectedItem());
+            e.getEmpresa().agregarEmpleado(e);
+            JOptionPane.showConfirmDialog(rootPane, "Esta seguro de los cambios?");
+            borrar();
+        }catch(Exception ex){
+            
+        }
+        
     }//GEN-LAST:event_jbGuardarempleadoActionPerformed
+
+    private void jbMostrarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbMostrarEmpleadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbMostrarEmpleadoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -302,6 +333,10 @@ public class NewJFrame extends javax.swing.JFrame {
     private void borrar(){
         jtRazonSocial.setText(" ");
         jtCuit.setText(" ");
+        jtDocumento.setText(" ");
+        jtApellido.setText(" ");
+        jtNombre.setText(" ");
+        jtSueldo.setText(" ");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
