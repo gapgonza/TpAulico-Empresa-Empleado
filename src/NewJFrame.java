@@ -6,7 +6,6 @@ import javax.swing.JOptionPane;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
 /**
  *
  * @author Gonza
@@ -15,8 +14,7 @@ public class NewJFrame extends javax.swing.JFrame {
 
     ArrayList<Empresa> ListaEmpresas = new ArrayList<Empresa>();
     ArrayList<Empleado> ListaEmpleados = new ArrayList<Empleado>();
-    
-    
+
     /**
      * Creates new form NewJFrame
      */
@@ -250,16 +248,20 @@ public class NewJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbCrearEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCrearEmpresaActionPerformed
-        Empresa e=new Empresa(jtRazonSocial.getText(),Integer.parseInt(jtCuit.getText()));
-         if(!ListaEmpresas.contains(e)){
-            jcEmpresas.addItem(e);
-            ListaEmpresas.add(e);
-            jbGuardarempleado.setEnabled(true);
-            jbMostrarEmpleado.setEnabled(true);
-         }else{
-             JOptionPane.showMessageDialog(this, "La empresa ya existe");
-         }
-        
+        if (jtRazonSocial.getText().isEmpty() || jtCuit.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No pueden existir campos vacios");
+        } else {
+            Empresa e = new Empresa(jtRazonSocial.getText(), Integer.parseInt(jtCuit.getText()));
+            if (!ListaEmpresas.contains(e)) {
+                jcEmpresas.addItem(e);
+                ListaEmpresas.add(e);
+                jbGuardarempleado.setEnabled(true);
+                jbMostrarEmpleado.setEnabled(true);
+            } else {
+                JOptionPane.showMessageDialog(this, "La empresa ya existe");
+            }
+        }
+        //Esta parte del codigo fue la primera, el problema es que no creaba la empresa con el array
         /*try {
             String razonSocial = jtRazonSocial.getText();
             int cuit = Integer.parseInt(jtCuit.getText());
@@ -274,21 +276,21 @@ public class NewJFrame extends javax.swing.JFrame {
             
             JOptionPane.showMessageDialog(this, "Verifique que ingreso numero en Cuit y letras en Razon Social");
         }
-       */ 
+         */
     }//GEN-LAST:event_jbCrearEmpresaActionPerformed
 
     private void jbGuardarempleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarempleadoActionPerformed
-        try{
+        try {
             Empleado e = new Empleado(Integer.parseInt(jtDocumento.getText()), jtNombre.getText(),
                     jcCategoria.getSelectedItem().toString(), Double.parseDouble(jtSueldo.getText()),
-                    (Empresa)jcEmpresas.getSelectedItem());
+                    (Empresa) jcEmpresas.getSelectedItem());
             e.getEmpresa().agregarEmpleado(e);
             JOptionPane.showConfirmDialog(rootPane, "Esta seguro de los cambios?");
             borrar();
-        }catch(Exception ex){
-            
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(rootPane, "Debe completar todos los campos");
         }
-        
+
     }//GEN-LAST:event_jbGuardarempleadoActionPerformed
 
     private void jbMostrarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbMostrarEmpleadoActionPerformed
@@ -329,8 +331,12 @@ public class NewJFrame extends javax.swing.JFrame {
             }
         });
     }
-    
-    private void borrar(){
+
+    private void mostrarEmpleado() {
+
+    }
+
+    private void borrar() {
         jtRazonSocial.setText(" ");
         jtCuit.setText(" ");
         jtDocumento.setText(" ");
