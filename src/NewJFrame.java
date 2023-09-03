@@ -294,7 +294,7 @@ public class NewJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jbGuardarempleadoActionPerformed
 
     private void jbMostrarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbMostrarEmpleadoActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jbMostrarEmpleadoActionPerformed
 
     /**
