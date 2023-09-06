@@ -20,6 +20,7 @@ public class NewJFrame extends javax.swing.JFrame {
      */
     public NewJFrame() {
         initComponents();
+        
     }
 
     /**
@@ -257,6 +258,7 @@ public class NewJFrame extends javax.swing.JFrame {
                 ListaEmpresas.add(e);
                 jbGuardarempleado.setEnabled(true);
                 jbMostrarEmpleado.setEnabled(true);
+                
             } else {
                 JOptionPane.showMessageDialog(this, "La empresa ya existe");
             }
@@ -294,7 +296,8 @@ public class NewJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jbGuardarempleadoActionPerformed
 
     private void jbMostrarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbMostrarEmpleadoActionPerformed
-        
+        MostrarEmpleados me = new MostrarEmpleados();
+        me.setVisible(true);
     }//GEN-LAST:event_jbMostrarEmpleadoActionPerformed
 
     /**
@@ -331,11 +334,7 @@ public class NewJFrame extends javax.swing.JFrame {
             }
         });
     }
-
-    private void mostrarEmpleado() {
-
-    }
-
+    
     private void borrar() {
         jtRazonSocial.setText(" ");
         jtCuit.setText(" ");
@@ -344,6 +343,8 @@ public class NewJFrame extends javax.swing.JFrame {
         jtNombre.setText(" ");
         jtSueldo.setText(" ");
     }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
