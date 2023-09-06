@@ -242,7 +242,7 @@ public class NewJFrame extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
         );
 
         pack();
@@ -296,8 +296,8 @@ public class NewJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jbGuardarempleadoActionPerformed
 
     private void jbMostrarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbMostrarEmpleadoActionPerformed
-        MostrarEmpleados me = new MostrarEmpleados();
-        me.setVisible(true);
+           
+        
     }//GEN-LAST:event_jbMostrarEmpleadoActionPerformed
 
     /**
