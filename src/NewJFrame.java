@@ -1,6 +1,7 @@
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -14,13 +15,14 @@ public class NewJFrame extends javax.swing.JFrame {
 
     ArrayList<Empresa> ListaEmpresas = new ArrayList<Empresa>();
     ArrayList<Empleado> ListaEmpleados = new ArrayList<Empleado>();
-
+    private DefaultTableModel verEmpleados = new DefaultTableModel();
     /**
      * Creates new form NewJFrame
      */
     public NewJFrame() {
         initComponents();
-        
+        armarCabecera();
+       
     }
 
     /**
@@ -56,6 +58,8 @@ public class NewJFrame extends javax.swing.JFrame {
         jbCrearEmpresa = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jtMostrarEmpleados = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -221,6 +225,21 @@ public class NewJFrame extends javax.swing.JFrame {
         jLabel5.setText("Ingrese datos");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
 
+        jtMostrarEmpleados.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jtMostrarEmpleados);
+
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 230, 340, 230));
+
         jMenu1.setText("Empleado");
         jMenuBar1.add(jMenu1);
 
@@ -242,7 +261,9 @@ public class NewJFrame extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -283,11 +304,11 @@ public class NewJFrame extends javax.swing.JFrame {
 
     private void jbGuardarempleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarempleadoActionPerformed
         try {
-            Empleado e = new Empleado(Integer.parseInt(jtDocumento.getText()), jtNombre.getText(),
+            Empleado e = new Empleado(Integer.parseInt(jtDocumento.getText()), jtNombre.getText(),jtApellido.getText(),
                     jcCategoria.getSelectedItem().toString(), Double.parseDouble(jtSueldo.getText()),
                     (Empresa) jcEmpresas.getSelectedItem());
             e.getEmpresa().agregarEmpleado(e);
-            JOptionPane.showConfirmDialog(rootPane, "Esta seguro de los cambios?");
+            JOptionPane.showMessageDialog(this, "Empleado agregado");
             borrar();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(rootPane, "Debe completar todos los campos");
@@ -296,8 +317,17 @@ public class NewJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jbGuardarempleadoActionPerformed
 
     private void jbMostrarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbMostrarEmpleadoActionPerformed
-           
-        
+          for(Empleado ver:Empresa.empleados){
+            verEmpleados.addRow(new Object[]{
+                ver.getDni(),
+                ver.getNombre(),
+                ver.getApellido(),
+                ver.getCategoria(),
+                ver.getSueldo(),
+                ver.getEmpresa()
+            }
+                    );
+        }
     }//GEN-LAST:event_jbMostrarEmpleadoActionPerformed
 
     /**
@@ -344,6 +374,17 @@ public class NewJFrame extends javax.swing.JFrame {
         jtSueldo.setText(" ");
     }
     
+    private void armarCabecera(){
+        verEmpleados.addColumn("Dni");
+        verEmpleados.addColumn("Nombre");
+        verEmpleados.addColumn("Apellido");
+        verEmpleados.addColumn("Categoria");
+        verEmpleados.addColumn("Sueldo");
+        verEmpleados.addColumn("Empresa");
+        jtMostrarEmpleados.setModel(verEmpleados);
+    }
+    
+       
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -364,6 +405,7 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbCrearEmpresa;
     private javax.swing.JButton jbGuardarempleado;
     private javax.swing.JButton jbMostrarEmpleado;
@@ -372,6 +414,7 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JTextField jtApellido;
     private javax.swing.JTextField jtCuit;
     private javax.swing.JTextField jtDocumento;
+    private javax.swing.JTable jtMostrarEmpleados;
     private javax.swing.JTextField jtNombre;
     private javax.swing.JTextField jtRazonSocial;
     private javax.swing.JTextField jtSueldo;

@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Empresa {
     private String razonSocial;
     private int cuit;
-    private ArrayList<Empleado> empleados;
+    public static ArrayList<Empleado> empleados;
 
     public Empresa(String razonSocial, int cuit) {
         this.razonSocial = razonSocial;

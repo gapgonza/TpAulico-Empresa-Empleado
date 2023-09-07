@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="EmpresaEmp">
+  <ClassDiagramComponents>
+    <Class name="Empresa" package="" visibility="public" xPosition="175.0" yPosition="130.0">
+      <Fields>
+        <Field name="razonSocial" type="String" visibility="private"/>
+        <Field name="cuit" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="agregarEmpleado" returnType="void" visibility="public">
+          <Argument type="empleado" name="e"/>
+        </Method>
+        <Method name="mostrarEmpleado" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Empleado" package="" visibility="public" xPosition="562.0" yPosition="121.0">
+      <Fields>
+        <Field name="dni" type="int" visibility="private"/>
+        <Field name="nombreApellido" type="String" visibility="private"/>
+        <Field name="categoria" type="String" visibility="private"/>
+        <Field name="sueldo" type="double" visibility="private"/>
+        <Field name="empresa" type="Empresa" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="tiene" source="Empresa" target="Empleado" type="Composition" sourceCardinality="0..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>

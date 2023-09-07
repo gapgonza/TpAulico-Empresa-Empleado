@@ -1,6 +1,7 @@
 public class Empleado {
     private int dni;
-    private String nombreApellido;
+    private String nombre;
+    private String apellido;
     private String categoria;
     private double sueldo;
     private Empresa empresa;
@@ -8,14 +9,15 @@ public class Empleado {
     public Empleado() {
     }
 
-    public Empleado(int dni, String nombreApellido, String categoria, double sueldo, Empresa empresa) {
+    public Empleado(int dni, String nombre, String apellido, String categoria, double sueldo, Empresa empresa) {
         this.dni = dni;
-        this.nombreApellido = nombreApellido;
+        this.nombre = nombre;
+        this.apellido = apellido;
         this.categoria = categoria;
         this.sueldo = sueldo;
         this.empresa = empresa;
     }
-    
+
     public int getDni() {
         return dni;
     }
@@ -24,12 +26,20 @@ public class Empleado {
         this.dni = dni;
     }
 
-    public String getNombreApellido() {
-        return nombreApellido;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setNombreApellido(String nombreApellido) {
-        this.nombreApellido = nombreApellido;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
     public String getCategoria() {
@@ -58,8 +68,7 @@ public class Empleado {
 
     @Override
     public String toString() {
-        return "Empleado{" + "dni=" + dni + ", nombreApellido=" + nombreApellido + ", categoria=" + categoria + ", sueldo=" + sueldo + ", empresa=" + empresa + '}';
-    }
-    
+        return "Empleado{" + "dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido + ", categoria=" + categoria + ", sueldo=" + sueldo + ", empresa=" + empresa + '}';
+    }    
     
 }
